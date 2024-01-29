@@ -1,0 +1,90 @@
+H2 database console:
+http://localhost:7001/h2-console - account
+username=sa
+password=1234
+
+http://localhost:7002/h2-console - customer
+username=sa
+password=1234
+
+-----------------------------------------------------------------
+
+Data identity:
+User:
+id (primary key)
+email
+password
+firstName
+lastName
+
+Account:
+id(primary key)
+custid(Foreign key of User.id)
+amount
+status
+
+-----------------------------------------------------------------
+Process Flow:
+
+-Customer can be created first with email, password, first name and last name.
+-Customer id will be created automatic.
+-Customer can create many bank accounts.
+-Relationship between Customer and Bank Account is one to many.
+-Bank accounts has foreign key (custid) for Customer.id
+-Account contains of amount, status and customer id.
+-Customer can withdraw, deposit cash and can update status of account.
+ 
+
+-----------------------------------------------------------------
+
+Error handling:
+Using try catch when create object for Restful API.
+
+Logging:
+Check response when call Restful API
+
+Security:
+Spring security Login.
+
+Encrypt password for customer and store in database
+
+
+-----------------------------------------------------------------
+API uri:
+http://localhost:7001/api/account/{custid} -(GET)- to retrieve all bank accounts of customer.
+
+http://localhost:7001/api/account - (POST) - to create account
+Request body:
+{
+    "custid":"4",
+    "amount":"500.0",
+    "status":"active"
+  }
+  
+localhost:7001/api/account/2 - (PUT) - to update account
+Request body:
+{
+
+    "amount": 100.0,
+    "status": "active"
+}
+
+http://localhost:7002/api/cust - (GET) - to retrieve all customer
+
+http://localhost:7002/api/cust - (POST) - to create new customer
+Request body:
+{
+        "email": "testApi@gmail.com",
+        "password": "123456",
+        "firstName": "firstApi",
+        "lastName": "lastApi"
+    }
+	
+	
+-----------------------------------------------------------------
+
+
+
+
+
+
